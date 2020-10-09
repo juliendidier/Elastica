@@ -449,12 +449,19 @@ class Search
             $data = $query->toArray();
         }
 
+var_dump('~~~ Search:search: ', json_encode([
+            $path,
+            Request::GET,
+            $data,
+            $params
+        ]));
         $response = $this->getClient()->request(
             $path,
             Request::GET,
             $data,
             $params
         );
+var_dump('~~~ Search:response: ', json_encode($response->getData()));
 
         return ResultSet::create($response, $query);
     }
